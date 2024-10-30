@@ -6,10 +6,15 @@ from pyarrow.ipc import new_file
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler, DirCreatedEvent, FileCreatedEvent
 
+key_id = 'your_access_key'
+secret_key_id = 'your_secret_key'
+
 session = boto3.session.Session()
 s3 = session.client(
     service_name='s3',
-    endpoint_url='https://storage.yandexcloud.net'
+    endpoint_url='https://storage.yandexcloud.net',
+    aws_access_key_id=key_id,
+    aws_secret_access_key=secret_key_id
 )
 
 bucket_name = 'name'
