@@ -21,12 +21,13 @@ bucket_name = 'name'
 local_directory = 'local'
 
 class S3UploadHandler(FileSystemEventHandler):
-    def on_created(self, event):
+    def on_modified(self, event):
         if event.is_directory:
             return None
 
         file_path = event.src_path
         if file_path.endswith('.xlsx'):
+            time.sleep(3)
             timestamp = datetime.now().strftime('%Y%m%d%H%M')
             new_file_name = f"uvao_ng_ticket_{timestamp}.xlsx"
 
